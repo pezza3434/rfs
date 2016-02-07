@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=development nodemon -e jsx,js,hbs --watch ../babel-redux-webpack-framework bin/www",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config ./webpack.dist.js"
   },
   "author": "",
   "license": "ISC",
@@ -15,15 +16,23 @@
     "babel-register": "^6.4.3",
     "debug": "^2.2.0",
     "express": "^4.13.4",
+    "express-session": "^1.13.0",
     "hbs": "^4.0.0",
     "history": "^1.17.0",
     "http": "0.0.0",
+    "mysql": "^2.10.2",
+    "oauth": "^0.9.14",
+    "passport": "^0.3.2",
+    "passport-twitter": "^1.0.4",
     "react": "^0.14.7",
+    "react-bootstrap": "^0.28.2",
     "react-dom": "^0.14.7",
     "react-redux": "^4.3.0",
     "react-router": "^1.0.3",
     "redux": "^3.2.1",
-    "redux-thunk": "^1.0.3"
+    "redux-thunk": "^1.0.3",
+    "sequelize": "^3.19.2",
+    "superagent": "^1.7.2"
   },
   "devDependencies": {
     "babel-loader": "^6.2.1",
