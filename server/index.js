@@ -11,23 +11,19 @@ var OAuth = require('oauth');
 var bodyParser = require('body-parser');
 const models = require('./models');
 
+var env = process.env.NODE_ENV || 'development';
+var config = require('./config/config')[env];
+
 // view engine setup
 app.set('views', path.join(__dirname, ''));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 
-const webpack = require('webpack');
-const webpackConfig = require('../webpack.config');
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
-
-const compiler = webpack(webpackConfig);
-
 var oauth = new OAuth.OAuth(
     'https://api.twitter.com/oauth/request_token',
     'https://api.twitter.com/oauth/access_token',
-    'sqnMkZc0i7OuyBpKC3XcjZxDj',
-    'xIJTWC7J0A55zAu38EU3cI435PBtcQwrQo2LtzWcqxzZgPglSn',
+    config.consumerKey,
+    config.consumerSecret,
     '1.0A',
     null,
     'HMAC-SHA1'
@@ -40,9 +36,9 @@ app.use(session({
 }))
 
 passport.use(new TwitterStrategy({
-        consumerKey: 'sqnMkZc0i7OuyBpKC3XcjZxDj',
-        consumerSecret: 'xIJTWC7J0A55zAu38EU3cI435PBtcQwrQo2LtzWcqxzZgPglSn',
-        callbackURL: "http://127.0.0.1:4000/callback"
+        consumerKey: config.consumerKey,
+        consumerSecret: config.consumerSecret,
+        callbackURL: config.callbackURL
     },
     function (token, tokenSecret, profile, cb) {
         return cb(null, {
@@ -66,6 +62,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 if (process.env.NODE_ENV !== 'production') {
+    const webpack = require('webpack');
+    const webpackConfig = require('../webpack.config');
+    const webpackDevMiddleware = require('webpack-dev-middleware');
+    const webpackHotMiddleware = require('webpack-hot-middleware');
+    const compiler = webpack(webpackConfig);
+
     app.use(webpackDevMiddleware(compiler));
     app.use(webpackHotMiddleware(compiler));
 }

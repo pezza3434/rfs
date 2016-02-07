@@ -9,7 +9,10 @@ module.exports = {
         dialect: 'mysql',
         port: 8881,
         logging: false,
-        applicationUrl: 'localhost:4000'
+        applicationUrl: 'localhost:4000',
+        consumerKey: 'sqnMkZc0i7OuyBpKC3XcjZxDj',
+        consumerSecret: 'xIJTWC7J0A55zAu38EU3cI435PBtcQwrQo2LtzWcqxzZgPglSn',
+        callbackUrl: 'http://127.0.0.1:5000/callback'
     },
     test: {
         username: 'root',
@@ -29,7 +32,10 @@ module.exports = {
         dialect: 'mysql',
         port: 3306,
         logging: false,
-        applicationUrl: 'horu.io/rfs'
+        applicationUrl: 'horu.io/rfs',
+        consumerKey: 'YKoLrNkDPQ8pSkR9iD0xbFDPm',
+        consumerSecret: 'Qs7oUOglpSvhjyu6gy9aLJY4WC5imS34hv8a7eyTxhpCNYXDUl',
+        callbackUrl: 'http://rfs.horu.io/callback'
 
     }
 };
