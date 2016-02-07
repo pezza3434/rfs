@@ -65,8 +65,11 @@ passport.deserializeUser(function (user, done) {
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(webpackDevMiddleware(compiler));
-app.use(webpackHotMiddleware(compiler));
+if (process.env.NODE_ENV !== 'production') {
+    app.use(webpackDevMiddleware(compiler));
+    app.use(webpackHotMiddleware(compiler));
+}
+
 
 app.get('/auth/twitter', passport.authenticate('twitter'));
 
