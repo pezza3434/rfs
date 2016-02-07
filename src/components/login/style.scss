@@ -1,0 +1,25 @@
+.login-button {
+    position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+}
+
+.login-button a {
+    background: #00adea;
+    color: #fff;
+    text-decoration: none;
+    font-weight: lighter;
+    padding: 10px 20px;
+    border-radius: 2px;
+
+    &:hover {
+        background: #01bbfd;
+        text-decoration: none;
+        color: #fff;
+    }
+
+    &:active {
+        background: #00adea;
+    }
+}

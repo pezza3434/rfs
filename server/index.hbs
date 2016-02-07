@@ -2,10 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Template</title>
+    <title>Request For Startup Feed</title>
+    <link rel="stylesheet" href="/css/animate.css">
+    {{#if isProduction}}
+        <link rel="stylesheet" href="/build/styles.css">
+    {{/if}}
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
     <div id="app-container" class="fill">{{{html}}}</div>
-    <script src="http://localhost:4000/main.js"></script>
+    {{#if isProduction}}
+        <script src="/build/main.js"></script>
+    {{else}}
+        <script src="http://localhost:4000/main.js"></script>
+    {{/if}}
 </body>
 </html>

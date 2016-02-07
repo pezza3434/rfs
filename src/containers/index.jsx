@@ -1,32 +1,19 @@
-import { connect } from 'react-redux';
+if (typeof window !== 'undefined') {
+    require('../bootstrap-grid.scss');
+    require('../globalStyles.scss');
+}
+
 import React from 'react';
-import { bindActionCreators } from 'redux';
-import * as appActions from '../actions/index';
-import Template from '../components/template';
+import Navigation from '../components/navigation/index.jsx';
+import {Grid} from 'react-bootstrap';
 
-const mapState = ({number}) => {
-    return {
-        number
-    }
-}
-
-const mapDispatch = (dispatch) => {
-    return bindActionCreators({
-        ...appActions
-    }, dispatch);
-}
-
-const component = React.createClass({
+export default React.createClass({
     render() {
         return (
-            <div>
-                <Template/>
-                {this.props.number}
-                Container component
-                <button onClick={this.props.addNumber.bind(null, 2)}> Click meeeee</button>
-            </div>
+            <Grid>
+                <Navigation/>
+                {this.props.children}
+            </Grid>
         )
     }
-});
-
-export default connect(mapState, mapDispatch)(component)
+})

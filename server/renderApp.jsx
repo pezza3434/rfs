@@ -15,7 +15,8 @@ module.exports = (req, res, next) => {
         );
 
         res.render('index.hbs', {
-            html: html
+            html: html,
+            isProduction: process.env.NODE_ENV === 'production'
         });
     });
 
