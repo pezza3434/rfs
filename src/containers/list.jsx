@@ -24,7 +24,7 @@ const component = React.createClass({
 
     render() {
         return (
-            <div>
+            <div className="container">
                 {this.props.tweets ? <Tweets addTweetAction={this.props.addTweet} tweets={this.props.tweets.body}/> : ''}
             </div>
         )
