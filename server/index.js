@@ -85,7 +85,7 @@ app.get('/callback',
 
 app.get('/api/tweets', function (req, res, next) {
     oauth.get(
-        'https://api.twitter.com/1.1/search/tweets.json?q=%23requestforstartup&result_type=recent',
+        'https://api.twitter.com/1.1/search/tweets.json?q=%23requestforstartup&result_type=mixed&count=100',
         req.user.token, //test user token
         req.user.tokenSecret, //test user secret
         function (e, data, response) {

@@ -3,8 +3,26 @@
         padding: 0;
         font-size: 25px;
         li {
-            display:inline;
-            padding:0px 10px;
+            display: inline;
+            padding: 0 10px;
+
+            &:first-child {
+                padding: 0px;
+            }
+            
+            a {
+                color: #00adea;
+                border: 2px solid;
+                border-radius: 22px;
+                padding: 12px 40px;
+                font-size: 12px;
+                text-decoration: none;
+
+                &:hover {
+                    background: #00adea;
+                    color: #fff;
+                }
+            }
         }
     }
 }
