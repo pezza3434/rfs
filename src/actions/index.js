@@ -42,7 +42,7 @@ export function addTweet(tweet) {
         });
         request
         .post('/api/tweet')
-        .send({tweetText: tweet.text, tweetPicture: tweet.user.profile_image_url.replace('_normal', '_bigger')})
+        .send({tweetId: tweet.id, tweetText: tweet.text, tweetPicture: tweet.user.profile_image_url.replace('_normal', '_bigger')})
         .end((err, res) => {
             if (err) {
                 return dispatch({
@@ -53,7 +53,8 @@ export function addTweet(tweet) {
 
             dispatch({
                 type: ADD_TWEET_SUCCESS,
-                payload: res
+                payload: res,
+                tweetId: tweet.id
             });
         })
     }

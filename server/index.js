@@ -89,7 +89,29 @@ app.get('/api/tweets', function (req, res, next) {
         req.user.token, //test user token
         req.user.tokenSecret, //test user secret
         function (e, data, response) {
-            res.json(JSON.parse(data));
+            const parsedData = JSON.parse(data);
+
+            const tweetIds = parsedData.statuses.map((tweet) => {
+                return {tweet_id: tweet.id};
+            });
+
+            models.tweets
+            .findAll({where: {$or: tweetIds}})
+            .then((matches) => {
+                const previouslySavedTweets = matches.map((match) => {
+                    return parseInt(match.tweet_id, 10);
+                });
+
+                const dataToReturn = parsedData.statuses.map((status) => {
+                    if (previouslySavedTweets.indexOf(status.id) > -1) {
+                        status.previouslySaved = true;
+                    }
+                    return status;
+                });
+
+                res.json(dataToReturn);
+            })
+
         });
 });
 
@@ -98,7 +120,8 @@ app.post('/api/tweet', function (req, res, next) {
         tweet_id: req.body.tweetId,
         twitter_user_id: req.user.id,
         tweet_text: req.body.tweetText,
-        tweet_picture: req.body.tweetPicture
+        tweet_picture: req.body.tweetPicture,
+        tweet_id: req.body.tweetId
     }).then(() => {
         res.status(200).json({message: 'Tweet added'});
     }).catch((err) => {

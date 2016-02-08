@@ -25,7 +25,7 @@ const component = React.createClass({
     render() {
         return (
             <div>
-                {this.props.tweets ? <Tweets addTweetAction={this.props.addTweet} tweets={this.props.tweets.body.statuses}/> : ''}
+                {this.props.tweets ? <Tweets addTweetAction={this.props.addTweet} tweets={this.props.tweets.body}/> : ''}
             </div>
         )
     }

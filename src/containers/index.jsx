@@ -11,7 +11,7 @@ export default React.createClass({
     render() {
         return (
             <Grid>
-                <Navigation/>
+                {this.props.location.pathname === '/' ? '' : <Navigation/>}
                 {this.props.children}
             </Grid>
         )
